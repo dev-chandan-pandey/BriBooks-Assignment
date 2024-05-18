@@ -10,31 +10,15 @@ function App() {
   const [pdfUrl, setPdfUrl] = useState('');
 
   const handleFrontCoverUpload = async (e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append('image', file);
-    try {
-      const response = await axios.post('/upload', formData);
-      setFrontCover(response.data.url);
-    } catch (error) {
-      console.error(error);
-    }
+    
   };
 
   const handleBackCoverUpload = async (e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append('image', file);
-    try {
-      const response = await axios.post('/upload', formData);
-      setBackCover(response.data.url);
-    } catch (error) {
-      console.error(error);
-    }
+  
   };
 
   const handlePageAdd = () => {
-    setPages([...pages, { text: '', backgroundUrl: '' }]);
+    
   };
 
   const handlePageTextChange = (index, newText) => {
@@ -44,33 +28,11 @@ function App() {
   };
 
   const handlePageImageUpload = async (index, e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append('image', file);
-    try {
-      const response = await axios.post('/upload', formData);
-      const updatedPages = [...pages];
-      updatedPages[index].backgroundUrl = response.data.url;
-      setPages(updatedPages);
-    } catch (error) {
-      console.error(error);
-    }
+ 
   };
 
   const generatePDF = async () => {
-    try {
-      const response = await axios.post('/generate-pdf', {
-        frontCoverUrl: frontCover,
-        frontCoverText: frontCoverText,
-        backCoverUrl: backCover,
-        backCoverText: backCoverText,
-        pages
-      }, { responseType: 'blob' });
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      setPdfUrl(url);
-    } catch (error) {
-      console.error(error);
-    }
+  
   };
 
   return (
